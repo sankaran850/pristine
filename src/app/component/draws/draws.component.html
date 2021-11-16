@@ -1,0 +1,30 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title">Draws</h4>
+    <div class="container" *ngIf="draws.length > 0">
+        <div class="row" *ngFor="let draw of draws">
+            <div class="col-sm-12 col-md-6 text-md-center mb-3">
+                <div class="product-list">
+                    <h4><b style="color:black !important;">{{draw.dra_title}}</b></h4>
+                    <div class="product-list-image position-relative cardimage">
+                        <div class="figure" [innerHtml]="transform(draw.fb_code)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="draws.length === 0">
+        <div class="alert alert-danger" role="alert">
+            No Draws
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

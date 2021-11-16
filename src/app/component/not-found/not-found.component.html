@@ -1,0 +1,11 @@
+<div class="container" *ngIf="!common.noInternet">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="alert alert-danger" role="alert">
+            <h4>404 | Page Not Found</h4>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

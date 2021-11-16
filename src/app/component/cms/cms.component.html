@@ -1,0 +1,34 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title" [innerHtml]="cms.title"></h4>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div [innerHtml]="cms.description">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

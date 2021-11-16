@@ -1,0 +1,172 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+
+    <h4 class="title">Order Details</h4>
+    
+    <div class="container">
+        <div class="row mt-2">
+            <div class="row">
+                <div class="col-12">
+                    <div class="list-group">
+                        <div class="list-group-item p-0">
+                            <div class="list-group-item-heading">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr class="new-size">
+                                                <td>My Basket</td>
+                                                <td>Price</td>
+                                                <td>QTY</td>
+                                                <td>Line Total</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let bas of orderDetails">
+                                                <td class="align-middle">
+                                                    <div class="cart-img float-left">
+                                                        <img src="{{bas.image}}" class="img-fluid" alt="">
+                                                    </div>
+                                                    <div class="float-left pt-lg-4 pl-lg-2">
+                                                        <h6 class="pro-name">{{bas.pro_title}}</h6>
+                                                    </div>
+                                                </td>
+                                                <td>{{common.currency}}{{bas.price}}</td>
+                                                <td>
+                                                    <span class="btn-secondary p-2">{{bas.quantity}}</span>
+                                                </td>
+                                                <td>{{common.currency}}{{bas.total_price}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-title">
+                            Payment Summary
+                        </div>
+                        <div class="list-group-item p-0 px-2">
+                            <div class="list-group-item-heading">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div id="sidebar" class="sticky" style="margin:3% 0 0 0;">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="py-2">Sub Total</div>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <div class=" py-2">{{common.currency}}{{order.grand_total}}</div>
+                                                </div>
+                                                <div class="col-6 ">
+                                                    <h4>TOTAL</h4>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <div class="">
+                                                        <h4>{{common.currency}}{{order.grand_total}}</h4>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-title">
+                            Entry List
+                        </div>
+                        <div class="list-group-item p-0">
+                            <div class="list-group-item-heading">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr class="new-size">
+                                                <td>Competition Name</td>
+                                                <td>Entry No</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let raf of raffleDetails" style="font-size:13px;">
+                                                <td>{{raf.product_title}}</td>
+                                                <td>{{raf.raffle_number}}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="sub-title">
+                        Order Details
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item p-0 px-2">
+                            <div class="list-group-item-heading">
+                                <div class="row radio">
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <h3 class="pb-1">Order Id : {{order.order_id}}
+                                            </h3>
+                                            <p>Order Date : {{order.order_date}} </p>
+                                            <p>Order Time : {{order.order_time}} </p>
+                                            <p>Payment Type : {{order.payment_type}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-title">
+                        Shipping Address
+                    </div>
+                    <div class="list-group-item p-0 px-2 mb-3">
+                        <div class="list-group-item-heading">
+                            <div class="row radio">
+                                <div class="col-12">
+                                    <div class="mt-3">
+
+                                        <p>{{order.address_line1}}, {{order.city}}, {{order.state}}
+                                            <br>{{order.country}} {{order.postcode}}.
+                                        </p>
+                                        <p>Phone : {{order.mobile_no}} </p>
+                                        <p>Email : {{order.email_id}}
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

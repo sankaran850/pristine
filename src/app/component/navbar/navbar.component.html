@@ -1,0 +1,51 @@
+<div id="mySidenav" class="sidenav" [ngClass]="common.navClass">
+    <a class="closebtn" (click)="common.closeNav()">&times;</a>
+    <a [routerLink]="['/']" (click)="common.closeNav()">Competitions</a>
+    <a [routerLink]="['/entry-list']" (click)="common.closeNav()">Entry List</a>
+    <!-- <a [routerLink]="['/draws']" (click)="common.closeNav()">Draws</a> -->
+    <a [routerLink]="['/winning-gallery']" (click)="common.closeNav()">Winning Gallery</a>
+    <a [routerLink]="['/cms/2']" (click)="common.closeNav()">About</a>
+    <a [routerLink]="['/cms/3']" (click)="common.closeNav()">Contact</a>
+    <a [routerLink]="['/cms/10']" (click)="common.closeNav()">Faqs</a>
+    <a [routerLink]="['/cms/5']" (click)="common.closeNav()">How To Play</a>
+    <a [routerLink]="['/cms/11']" (click)="common.closeNav()">Terms and Conditions</a>
+    <a [routerLink]="['/cms/12']" (click)="common.closeNav()">Privacy and Policy</a>
+    <div *ngIf="authService.authenticate">
+        <a [routerLink]="['/my-account']" (click)="common.closeNav()">My Account</a>
+        <a [routerLink]="['/change-password']" (click)="common.closeNav()">Change Password</a>
+        <a [routerLink]="['/my-order']" (click)="common.closeNav()">My Order</a>
+        <a [routerLink]="['/my-wallet']" (click)="common.closeNav()">My Wallet</a>
+        <a [routerLink]="['/add-money-wallet']" (click)="common.closeNav()">Add Money</a>
+        <a [routerLink]="['/refer-earn']" (click)="common.closeNav()">Refere & Earn</a>
+        <a (click)="logout($event)">Logout</a>
+    </div>
+    <div *ngIf="!authService.authenticate">
+        <a [routerLink]="['/login']" (click)="common.closeNav()">Login</a>
+        <a [routerLink]="['/register']" (click)="common.closeNav()">Register</a>
+    </div>
+</div>
+<div class="container-fluid fixed-top" style="background-color: black;">
+    <div class="container">
+        <div class="row" style="padding-top: 30px !important;">
+            <div class="col-2">
+                <div style="padding-top: 5px">
+                    <span style="font-size:30px;cursor:pointer;color: #D3C499;"
+                        (click)="common.openNav()">&#9776;</span>
+                </div>
+            </div>
+            <div class="col-8">
+                <img src="assets/images/logo.png" [routerLink]="['/']" width="100%"
+                    style="height: 60px; object-fit: contain;">
+            </div>
+            <div class="col-2 float-right" style="padding: 5px;">
+                <div style="padding-top:10px">
+                    <a (click)="common.closeNav()" [routerLink]="['/cart']"><i class="fa fa-shopping-cart"
+                            aria-hidden="true" style="font-size:25px; color:white"></i><span
+                            class="badge badge-warning lblCartCount" id="totalqty">{{common.totalQuantity}}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-bottom: 91px;"></div>

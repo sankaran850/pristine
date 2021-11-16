@@ -1,0 +1,46 @@
+<div class="wrapper" *ngIf="!common.noInternet && !loading">
+    <div id="formContent">
+        <div>
+            <img src="assets/images/logo.png" id="icon" alt="User Icon" />
+        </div>
+
+        <form style="padding-bottom: 5px;">
+            <input type="text" placeholder="Contact Name" value="{{contactName}}"
+                (keyup)="onKeyUp($event, 'contactName')" />
+            <div class="text-danger" *ngIf="inValidContactName">Contact name is required</div>
+            <input type="text" placeholder="Contact Number" value="{{contactNo}}"
+                (keyup)="onKeyUp($event, 'contactNo')" />
+            <div class="text-danger" *ngIf="inValidContactNo">Provide valid contact no</div>
+            <input type="email" placeholder="Email Id" value="{{emailId}}" (keyup)="onKeyUp($event, 'emailId')" />
+            <div class="text-danger" *ngIf="inValidEmailId">Provide valid email id</div>
+            <input type="password" placeholder="Password" value="{{password}}" (keyup)="onKeyUp($event, 'password')" />
+            <div class="text-danger" *ngIf="inValidPassword">Password is required</div>
+            <input type="button" (click)="handleRegister($event)" value="Register"
+                [disabled]="unUseContactName || unUsePassword || inValidEmailId || inValidPassword">
+            <a href="#" style="color: white;" [routerLink]="['/login']">Login</a>
+            <div class="note" style="color: white;">
+                <small>Note : your details are safe with us and will not be passed on</small>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

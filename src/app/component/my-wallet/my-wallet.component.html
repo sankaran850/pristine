@@ -1,0 +1,70 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+
+    <div class="cart-new-bg">
+        <h4 class="title">My Wallet</h4>
+        <div class="container ">
+            <div class="row">
+                <div class="col-7">
+                    <div style="padding-top:15px;font-weight:bold;font-size:18px;">Wallet Available Balance :
+                        {{common.currency}}{{walletTotalAmount}}</div>
+                </div>
+                <div class="col-5">
+                    <button type="button" class="btn btn-lg btn-block my-3" [routerLink]="['/add-money-wallet']"
+                        style="width: 100%; font-size: 15px; background-color: #D3C499;color:white">Add Money</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <table class="table" style="border: #ccc solid 1px;">
+                            <thead>
+                                <tr style="background: #e2e2e2;">
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="walletList.length > 0" class="inner-text">
+                                <tr *ngFor="let wl of walletList">
+                                    <td width="25%">{{wl.date}}</td>
+                                    <td>{{wl.description}}</td>
+                                    <td>{{common.currency}}{{wl.amount}}</td>
+                                    <td>{{wl.type}}</td>
+                                </tr>
+                            </tbody>
+                            <tbody *ngIf="walletList.length === 0" class="inner-text">
+                                <tr>
+                                    <td colspan="4" style="text-align: center; color: red;">No Orders</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

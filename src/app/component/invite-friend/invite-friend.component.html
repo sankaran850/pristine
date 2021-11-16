@@ -1,0 +1,60 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title">Refer And Earn</h4>
+
+    <div class="container">
+        <div class="mt-2">
+            <div class="page-header">
+                <div class="form-group">
+                    <label>Friend Name</label>
+                    <input type="text" class="form-control" placeholder="Friend Name"
+                        (keyup)="onKeyUp($event, 'friendName')">
+                    <span *ngIf="inValidFriendName" class="text-danger">Please enter friend name.</span>
+                </div>
+                <div class="form-group">
+                    <label>Friend Email</label>
+                    <input type="text" class="form-control" placeholder="Friend Email"
+                        (keyup)="onKeyUp($event, 'friendEmail')">
+                    <span *ngIf="inValidFriendEmail" class="text-danger">Please enter valid email.</span>
+                </div>
+
+                <div class="well">
+                    <button type="button" class="btn bas-bg btn-lg btn-block my-3" (click)="referFriend()"
+                        [disabled]="unUseFriendName || unUseFriendEmail">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #alertModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;">Email send to your friend successfully.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

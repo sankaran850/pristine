@@ -1,0 +1,133 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title">My Cart</h4>
+
+    <div class="emt" align="center" *ngIf="cartItem.length === 0">
+        <img src="assets/images/no-product2.png" style="width: 250px; margin-top: 30%;">
+    </div>
+
+
+    <div style="overflow-x:auto;" *ngIf="cartItem.length > 0">
+        <table class="table table-striped table-bordered deviceWidth" width="100%">
+            <tbody>
+                <tr>
+                    <th width="20%">Item</th>
+                    <th width="20%">QTY</th>
+                    <th width="20%">Price</th>
+                    <th width="20%">Total Price</th>
+                </tr>
+                <tr *ngFor="let cart of cartItem; let i = index;" class="ng-scope">
+                    <td>
+                        <div class="cart-img ">
+                            <img src="{{cart.image}}" class="img-fluid" width="60" alt="">
+                        </div>
+                        <p style="width: 70px; text-align: left; overflow: auto;margin-top: 10px;font-size:12px;"
+                            class="ng-binding">{{cart.pro_title}}</p>
+                        <div (click)="openRemoveBasketModal(cart.basketID)" class="remove-pro" style="color: red;"><i
+                                class="fa fa-trash" aria-hidden="true"></i>
+                            <span>Remove</span></div>
+                    </td>
+                    <td>
+                        <div class="input-group" style="width: 80px;">
+                            <span class="input-group-btn" *ngIf="cart.free === '0'">
+                                <button type="button" class="quantity-left-minus btn btn-number round"
+                                    (click)="modifyQuantity('dec', cart.basketID, cart.quantity, cart.price, i)">
+                                    -
+                                </button>
+                            </span>
+                            <p class="form-control input-number no-bor"
+                                style="padding: 0px;color: black!important; text-align: center;background:none; border: none;padding-bottom: 10px;">
+                                {{cart.quantity}}
+                            </p>
+                            <span class=" input-group-btn" *ngIf="cart.free === '0'">
+                                <button type="button" class="quantity-right-plus btn btn-number round"
+                                    (click)="modifyQuantity('inc', cart.basketID, cart.quantity, cart.price, i)">
+                                    +
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td width="60" class="ng-binding">{{common.currency}}{{cart.price}}</td>
+                    <td width="80">{{common.currency}}{{cart.total_price}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3"><span class="pull-right">Sub Total</span></th>
+                    <th class="ng-binding">{{common.currency}}{{common.subTotal}}</th>
+                </tr>
+                <tr>
+                    <th colspan="3"><span class="pull-right">Total</span></th>
+                    <th class="ng-binding">{{common.currency}}{{common.orderTotal}}</th>
+                </tr>
+                <tr *ngIf="authService.authenticate" class="ng-scope">
+                    <td colspan="4" align="right">
+                        <button [routerLink]="['/checkout']"  class="pull-right btn btn-warning">Checkout</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!authService.authenticate">
+                    <td colspan="4" style="text-align:right">
+                        <button (click)="checkout()" class="btn bas-bg text-white">Continue
+                            as Guest</button>
+                        &nbsp;
+                        <a [routerLink]="['/login']" class="btn bas-bg text-white">Login</a>
+                    </td>
+                </tr>
+                <tr *ngIf="cartItem.length > 0" class="ng-scope">
+                    <td colspan="4" align="left">
+                        <button class="btn bas-bg mx-1 text-white" (click)="openClearBasketModal()">Clear
+                            Basket</button>
+
+                        <a [routerLink]="['/competition-listing']" style="float:right;" class="btn bas-bg">Continue
+                            Shopping</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #removeBasketModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Alert</h5>
+        </div>
+        <div class="modal-body">
+            <p style="color: #fff !important;">Do you want to remove the competition?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bas-bg col-5"
+                (click)="modal.dismiss('Cross click')">Cancel</button>
+            <button type="button" class="btn bas-bg col-5" (click)="removeBasket(basketId)">Yes</button>
+        </div>
+    </ng-template>
+
+    <ng-template #clearBasketModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Alert</h5>
+        </div>
+        <div class="modal-body">
+            <p style="color: #fff !important;">Do you want to clear basket?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bas-bg col-5"
+                (click)="modal.dismiss('Cross click')">Cancel</button>
+            <button type="button" class="btn bas-bg col-5" (click)="clearBasket()">Yes</button>
+        </div>
+    </ng-template>
+
+    <ng-template #errorModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Alert</h5>
+        </div>
+        <div class="modal-body">
+            <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+        </div>
+    </ng-template>
+</div>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

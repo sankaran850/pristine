@@ -1,0 +1,56 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+
+    <h4 class="title">My Order</h4>
+    <div class="container">
+        <div class="cart-new-bg">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="page-header">
+
+                        <table class="table" style="border: #ccc solid 1px;">
+                            <thead>
+                                <tr style="background: #e2e2e2;">
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="inner-text">
+                                <tr *ngFor="let ord of orders">
+                                    <td align="center">{{ord.order_id}}</td>
+                                    <td>{{ord.order_date}}</td>
+                                    <td><button type="button" class="btn btn-warning tab-size"
+                                            (click)="orderDetails(ord.order_id)">View</button></td>
+                                </tr>
+                                <tr *ngIf="orders.length == 0">
+                                    <td colspan="3" style="text-align: center; color: red;">No Orders</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

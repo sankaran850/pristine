@@ -1,0 +1,40 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title">Entry List</h4>
+
+    <div class="container">
+        <div class="row" *ngFor="let entry of entryList">
+            <div class="col-lg-4 col-md-4" style="padding-bottom: 20px; padding-top: 20px;">
+                <img [src]="entry.image" alt="{{entry.pro_title}}" class="wn">
+                <h5 style="color:black!important;padding-top:20px">{{entry.pro_title}}</h5>
+                <p style="padding-bottom:10px; border-bottom: 1px solid #333333;">Draw Date : {{entry.draw_date}}</p>
+
+                <p class="col-lg-6">
+                    <a class="btn btn-block cart-new"><a style="color:white !important;" href="{{entry.seo_key}}"
+                            target="_blank">VIEW
+                            ENTRY LIST</a></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

@@ -1,0 +1,80 @@
+.btn-warning {
+  background-color: #D3C499 !important;
+  border-color: #D3C499!important;
+  border-radius: 0;
+  color: #fff !important;
+}
+
+.bas-bg {
+  color: #fff !important;
+  background-color: #D3C499 !important;
+  border-color: #D3C499;
+  border-radius: 0;
+}
+
+.round {
+  border-radius: 50%;
+  height: 28px;
+  padding: 0;
+  width: 28px;
+  border: black solid 1px;
+  color: black;
+}
+
+.table td {
+  padding: .75rem;
+  vertical-align: middle;
+  border-top: 1px solid black;
+  color: black !important;
+  background: #EDEDED;
+}
+
+.table-bordered td, .table-bordered th {
+  border: 1px solid #000000;
+}
+
+.dark-modal .modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #000 !important;
+  background-clip: padding-box;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  outline: 0;
+  color: white;
+  margin-top: 65%;
+}
+
+.dark-modal .close {
+  color: white;
+}
+
+.dark-modal .modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-top: 1px solid black;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.dark-modal .modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 5px;
+}
+
+.dark-modal .modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #000000;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+}

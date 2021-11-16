@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+<h4 class="title">Winners Gallery</h4>
+
+<div class="container">
+    <div infinite-scroll [infiniteScrollDisabled]="busy" [infiniteScrollDistance]="scrollDistance"
+        [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
+        <div class="row" *ngFor="let gallery of winningGallery">
+            <div class="col-lg-4" style="padding-bottom: 20px; padding-top: 20px;">
+                <div class="">
+                    <img [src]="gallery.image" class="img-fluid"
+                        style=" width:100%; height:200px !important;  object-fit: contain; ">
+                </div>
+                <div align="center">
+                    <button
+                        style="width:100%; margin-top:10px;text-decoration: none !important;  text-align:center; color:white !important; background:#D3C499; border:#D3C499;">
+                        <b
+                            style="color: white !important; font-size: 14px;text-decoration: none !important;">{{gallery.meta_title}}</b>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>

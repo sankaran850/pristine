@@ -1,0 +1,285 @@
+<app-navbar></app-navbar>
+
+<div class="container content-margin">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-12">
+            <div class="det">
+                <h5 style="border-bottom: 2px solid black;">{{competionDetail.pro_title}}</h5>
+                <img src="{{competionDetail.image}}" class="s-img">
+                <div class="row">
+                    <div class="col-8">
+                        <h5 style="color: #D3C499;">Only {{competionDetail.max_entry}} tickets</h5>
+                        <p *ngIf="competionDetail.free === '0'">Cost per entry
+                            {{common.currency}}{{competionDetail.price}}
+                            <span *ngIf="competionDetail.discound_price !== ''">NOW
+                                {{common.currency}}{{competionDetail.dicount_price}}</span>
+                        </p>
+                        <p *ngIf="competionDetail.free === '1'">Free Entry</p>
+                        <p style="font-size:13px;">Only 1 Winner in this Competition</p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 p-0">
+                                    <div
+                                        *ngIf="days === '00' && hours === '00' && minutes === '00' && seconds === '00'">
+                                        <strong style="color: #EB4222;">SOLD OUT</strong>
+                                    </div>
+                                    <div class="counTimer"
+                                        *ngIf="days !== '00' || hours !== '00' || minutes !== '00' || seconds !== '00'">
+                                        <ul>
+                                            <li>
+                                                <div class="countDown_cont"><span>{{days}}</span></div>
+                                                <p>Days</p>
+                                            </li>
+                                            <li>
+                                                <div class="countDown_cont"><span>{{hours}}</span></div>
+                                                <p>Hours</p>
+                                            </li>
+                                            <li>
+                                                <div class="countDown_cont"><span>{{minutes}}</span></div>
+                                                <p>Min</p>
+                                            </li>
+                                            <li>
+                                                <div class="countDown_cont"><span>{{seconds}}</span></div>
+                                                <p>Sec</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <span (click)="openAddToCart(addToCart)">
+                            <img src="assets/images/ds1.png" width="90px" class="img-fluid">
+                        </span>
+                    </div>
+                </div>
+                <p style="font-size:13px;">(Apple is not in any way a sponsor of Pristine Competitions)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row" style="margin-top: 10px;">
+        <div class="col-12">
+            <div class="det">
+                <div class="container" id="number_picker_start" style="display: block;">
+                    <div class="lty-lottery-color-graph">
+                        <div class="color-graph-item">
+                            <div class="inner-color-graph-item">
+                                <div style="background: #D3C499;"></div>
+                                <p>Available</p>
+                            </div>
+                        </div>
+                        <div class="color-graph-item">
+                            <div class="inner-color-graph-item">
+                                <div style="background:  #191b1e;"></div>
+                                <p>Purchased</p>
+                            </div>
+                        </div>
+                        <div class="color-graph-item">
+                            <div class="inner-color-graph-item">
+                                <div style="background:#756200;"></div>
+                                <p>Another Player is purchasing</p>
+                            </div>
+                        </div>
+                        <div class="color-graph-item">
+                            <div class="inner-color-graph-item">
+                                <div style="background:#c6e1c6;"></div>
+                                <p>Added to your cart</p>
+                            </div>
+                        </div>
+                        <div class="color-graph-item">
+                            <div class="inner-color-graph-item">
+                                <div style="background:#ffb80e;"></div>
+                                <p>Your Current Selection</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scrollmenu mt-4 mb-4">
+                        <ng-container *ngFor="let in of counter(newPerPage); let i = index">
+                            <button *ngIf="i === 0" type="button" [id]="generateID(i)"
+                                (click)="numberPicker(competionDetail.pro_id, i, 0, (i+1)*competionDetail.no_tickets)"
+                                [style.background-color]="selectedIndex === i ? '#ffb80e' : '#d3c499'">
+                                <b>1 - {{(i+1)*competionDetail.no_tickets}}</b>
+                            </button>
+
+                            <button *ngIf="i+1 === newPerPage" type="button" [id]="generateID(i)"
+                                (click)="numberPicker(competionDetail.pro_id, i, competionDetail.no_tickets , competionDetail.max_entry)"
+                                [style.background-color]="selectedIndex === i ? '#ffb80e' : '#d3c499'">
+                                <b>{{(i+1)*competionDetail.no_tickets-competionDetail.no_tickets+1}} -
+                                    {{competionDetail.max_entry}}</b>
+                            </button>
+
+                            <button *ngIf="i !== 0 && i+1 !== newPerPage" type="button" [id]="generateID(i)"
+                                (click)="numberPicker(competionDetail.pro_id, i, competionDetail.no_tickets, (i+1)*competionDetail.no_tickets)"
+                                [style.background-color]="selectedIndex === i ? '#ffb80e' : '#d3c499'">
+                                <b>{{(i+1)*competionDetail.no_tickets-competionDetail.no_tickets+1}} -
+                                    {{(i+1)*competionDetail.no_tickets}}</b>
+                            </button>
+                        </ng-container>
+                    </div>
+
+                    <div class="lty-lottery-ticket-panel">
+                        <div class="lty-lottery-ticket-tab-content">
+                            <div class="lty-ticket-number-wrapper">
+                                <ul class="lty-ticket-number-content" #div>
+                                </ul>
+                            </div>
+
+                            <div *ngIf="innerLoading">
+                                <app-spinner></app-spinner>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-12">
+            <div class="det" *ngIf="competionDetail.description !== null">
+                <h5 style="color: #D3C499;">DESCRIPTION</h5>
+                <div class="text-dec-none desc-content ng-binding">
+                    <div [innerHtml]="competionDetail.description"></div>
+                </div>
+            </div>
+            <div class="det" *ngIf="competionDetail.specification !== null">
+                <h5 style="color: #D3C499;">PRIZE SPECIFICATIONS:</h5>
+                <div class="text-dec-none desc-content" [innerHtml]="competionDetail.specification"></div>
+            </div>
+            <div class="det" *ngIf="competionDetail.competition_details !== null">
+                <h5 style="color: #D3C499;">COMPETITION DETAILS</h5>
+                <div class="text-dec-none desc-content" [innerHtml]="competionDetail.competition_details">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<ng-template #alertModal let-modal>
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title">
+            Alert
+        </h5>
+        <button type="button" style="color: white;" class="close"
+            (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body">
+        <h6>Competition Ends</h6>
+    </div>
+</ng-template>
+<!-- The Modal -->
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<!-- The Modal -->
+<ng-template #warningModal let-modal>
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title">
+            Alert
+        </h5>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body">
+        <h6>Please login to enter free competition. You redirect to login!</h6>
+    </div>
+</ng-template>
+<!-- The Modal -->
+
+<!-- The Modal -->
+<ng-template #existModal let-modal>
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title">
+            Alert
+        </h5>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body">
+        <h6>You already added this competiton in your cart!</h6>
+    </div>
+</ng-template>
+<!-- The Modal -->
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>
+
+
+<!-- The Modal -->
+<ng-template #addToCart let-modal>
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title" *ngIf="Que_Ans.length > 0">
+            QUESTION
+        </h5>
+        <h5 class="modal-title" *ngIf="Que_Ans.length === 0">
+            SELECT QUANTITY
+        </h5>
+        <button type="button" style="color: white;" class="close"
+            (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <form [formGroup]="form">
+        <!-- Modal body -->
+        <div class="modal-body" formArrayName="question_answer">
+            <div class="form-group" *ngFor="let QA of Que_Ans; let i = index;">
+                <div [formGroupName]="i">
+                    <label style="color: #fff !important;">{{QA.question}}?</label>
+                    <select class="form-control" formControlName="answer">
+                        <option [value]="null" disabled>CHOOSE AN OPTION</option>
+                        <option *ngFor="let opt of QA.options" value="{{opt}}_{{QA.q_id}}">
+                            {{opt}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-2" style="color: white !important;">QTY</div>
+                <div class="col-4" *ngIf="competionDetail.free === '0'">
+                    <select class="form-control" formControlName="quantity">
+                        <option *ngFor="let q of quantity" [value]="q">{{q}}</option>
+                    </select>
+                </div>
+                <div class="col-4" *ngIf="competionDetail.free === '1'">
+                    <select class="form-control" formControlName="quantity" (change)="onChangeSelect()">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-sm atc btn-block" type="button"
+                        (click)="onSubmit(competionDetail.pro_id, competionDetail.price)">
+                        ADD TO CART
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</ng-template>

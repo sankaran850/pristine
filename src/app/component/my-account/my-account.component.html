@@ -1,0 +1,102 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+    <h4 class="title">My Account</h4>
+
+    <div class="container">
+        <div class="mt-2">
+            <div class="container-fluid">
+                <div class="page-header">
+
+                    <form class="ng-pristine">
+                        <div class="form-group" *ngIf="message !== ''">
+                            <div class="alert alert-{{status}}">
+                                <strong>{{message}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="First Name" value="{{mem_name}}"
+                                (keyup)="onKeyUp($event, 'firstName')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Surname</label>
+                            <input type="text" class="form-control" placeholder="Surname" value="{{mem_lname}}"
+                                (keyup)="onKeyUp($event, 'lastName')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Email" value="{{email_id}}"
+                                [disabled]="disableEmailId" (keyup)="onKeyUp($event, 'emailId')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="Phone Number" value="{{mobile_no}}"
+                                (keyup)="onKeyUp($event, 'mobileNo')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Address Line 1</label>
+                            <input type="text" class="form-control" placeholder="Enter address"
+                                value="{{address_line1}}" (keyup)="onKeyUp($event, 'addressLine1')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Address Line 2</label>
+                            <input type="text" class="form-control" placeholder="Enter address"
+                                value="{{address_line2}}" (keyup)="onKeyUp($event, 'addressLine2')" />
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" placeholder="City" value="{{city}}"
+                                (keyup)="onKeyUp($event, 'city')" />
+                        </div>
+                        <div class="form-group">
+                            <label>County</label>
+                            <input type="text" class="form-control" placeholder="County / State" value="{{state}}"
+                                (keyup)="onKeyUp($event, 'state')" />
+                        </div>
+                        <div class="form-group">
+                            <label>Postcode</label>
+                            <input type="text" class="form-control" placeholder="Zip / Postal Code" value="{{postCode}}"
+                                (keyup)="onKeyUp($event, 'postCode')" />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputState" class="control-label">Country</label>
+                            <select class="form-control" (change)="onKeyUp($event, 'country')">
+                                <option value="">--Select Country--</option>
+                                <option *ngFor=" let copt of countryOptions | keyvalue; let i=index;"
+                                    class="ng-binding ng-scope" [value]="copt.key"
+                                    [selected]="country === copt.key ? 'selected' : ''">{{copt.value}}</option>
+                            </select>
+                        </div>
+
+                        <div class="well">
+                            <button type="button" class="btn btn-warning btn-lmd btn-block my-3"
+                                (click)="handleUpdate($event)"
+                                [disabled]="unUseAddressLine1 || unUseCity || unUseCountry || unUseEmailId || unUseMemlName || unUseMemName || unUseMobileNo || unUsePostCode || unUseState">Update
+                                Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

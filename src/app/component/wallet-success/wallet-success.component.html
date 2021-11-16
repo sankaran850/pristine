@@ -1,0 +1,35 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+</div>
+
+<ng-template #alertModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;">{{common.currency}}{{walletTotalAmount}} added to your wallet successfully.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm bas-bg col-5" [routerLink]="['/my-wallet']"  (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

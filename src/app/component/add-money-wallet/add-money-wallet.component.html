@@ -1,0 +1,56 @@
+<div *ngIf="!common.noInternet && !loading">
+    <app-navbar></app-navbar>
+
+    <h4 class="title">Add Money</h4>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="container-fluid">
+                <div class="page-header">
+                    <form>
+                        <div class="form-group">
+                            <label>Enter Amount</label>
+                            <input type="number" class="form-control" placeholder="Amount"
+                                (keyup)="onKeyUp($event, 'walletAmount')">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Payment</label>
+                            <select class="form-control" (keyup)="onKeyUp($event, 'paymentGateway')">
+                                <option value="">--Select Payment Gateway--</option>
+                                <option [value]="po.value" *ngFor="let po of paymentOptions | keyvalue;"
+                                    [selected]="po.value === paymentGateway">{{po.value}}</option>
+                            </select>
+                        </div>
+
+                        <div class="well">
+                            <button type="button" class="btn btn-lg btn-block my-3"
+                                style="font-size: 15px; background-color: #D3C499;color:white"
+                                [disabled]="unUseWalletAmount || unUsePaymentGateway"
+                                (click)="addMoneyToWallet()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Alert</h5>
+    </div>
+    <div class="modal-body">
+        <p style="color: #fff !important;" [innerHtml]="errorMsg"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn bas-bg col-5" (click)="modal.dismiss('Cross click')">Ok</button>
+    </div>
+</ng-template>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="common.noInternet">
+    <app-internet></app-internet>
+</div>

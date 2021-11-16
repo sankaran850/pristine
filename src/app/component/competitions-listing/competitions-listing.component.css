@@ -1,0 +1,108 @@
+.box-border {
+  /*border: #fff solid 2px;*/
+  border: black solid 2px;
+  margin: 3% 0;
+}
+
+.box-border h1 {
+  font-family: "futuramedium_condensed";
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+.box-border p {
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #fff;
+  margin: 0;
+  padding: 2px 0;
+}
+
+.img-area {
+  /*border: #fff solid 2px;*/
+  border: black solid 2px;
+  margin: 0 0 10px 0;
+  height: 57px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-tab {
+  height: 170px;
+}
+
+.counTimer {
+  display: inline-block;
+  margin-top: 7px;
+}
+
+.counTimer ul {
+  padding: 0;
+  margin: 0 0 6px 0;
+}
+
+.counTimer ul li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  margin-right: 0.5em;
+}
+
+.counTimer ul li p {
+  text-transform: uppercase;
+  margin-top: 10px !important;
+  display: block;
+  padding: 0;
+  font-size: 10px;
+  text-align: center !important;
+  /*margin: 5px 0*/
+}
+
+.countDown_cont {
+  font-size: 16px;
+  display: inline;
+  color: white !important;
+  padding: 4px;
+  /* margin-right: 3px; */
+  /* background: black; */
+  background: #d3c499;
+  box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.2);
+}
+
+.countDown_cont span:after {
+  content: "";
+  /*width: 100%;*/
+  height: 1px;
+  background: #eee;
+  border-top: 1px solid #333;
+  display: block;
+  position: absolute;
+  top: 7%;
+  left: 0;
+  z-index: 2;
+}
+
+@media (max-width: 320px) {
+  .box-border h2 {
+    font-size: 19px;
+  }
+  .addtocart {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .countDown_cont {
+    font-size: 14px;
+    display: inline;
+    color: white !important;
+    padding: 1px;
+    /* margin-right: 3px; */
+    background: #d3c499;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.2);
+  }
+  .list-type .countDown_cont {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,138 @@
+.det {
+  border: 3px solid black;
+  padding: 5px;
+  /* margin: 5px; */
+}
+
+.s-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.dark-modal .modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #000 !important;
+  background-clip: padding-box;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  outline: 0;
+  color: white;
+  margin-top: 65%;
+}
+.dark-modal .close {
+  color: white;
+}
+
+.dark-modal .modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px;
+  border-top: 1px solid black;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.dark-modal .modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 5px;
+}
+
+.dark-modal .modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #000000;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+}
+
+.atc {
+  color: #fff !important;
+  background-color: #d3c499 !important;
+  border-color: #d3c499;
+  border-radius: 0;
+  font-size: 15px;
+  padding: 7px;
+}
+
+.counTimer {
+  display: inline-block;
+  margin-top: 7px;
+}
+
+.counTimer ul {
+  padding: 0;
+  margin: 0 0 6px 0;
+}
+
+.counTimer ul li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  margin-right: 0.5em;
+}
+
+.counTimer ul li p {
+  text-transform: uppercase;
+  margin-top: 10px !important;
+  display: block;
+  padding: 0;
+  font-size: 10px;
+  text-align: center !important;
+  /*margin: 5px 0*/
+}
+
+.countDown_cont {
+  font-size: 16px;
+  display: inline;
+  color: white !important;
+  padding: 4px;
+  /* margin-right: 3px; */
+  /* background: black; */
+  background: #d3c499;
+  box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.2);
+}
+
+.countDown_cont span:after {
+  content: "";
+  /*width: 100%;*/
+  height: 1px;
+  background: #eee;
+  border-top: 1px solid #333;
+  display: block;
+  position: absolute;
+  top: 7%;
+  left: 0;
+  z-index: 2;
+}
+
+@media (max-width: 320px) {
+  .box-border h2 {
+    font-size: 19px;
+  }
+  .addtocart {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .countDown_cont {
+    font-size: 14px;
+    display: inline;
+    color: white !important;
+    padding: 1px;
+    /* margin-right: 3px; */
+    background: #d3c499;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.2);
+  }
+  .list-type .countDown_cont {
+    font-size: 12px;
+  }
+}
